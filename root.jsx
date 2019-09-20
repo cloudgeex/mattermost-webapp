@@ -43,35 +43,14 @@ function preRenderSetup(callwhendone) {
     callwhendone();
 }
 
-function renderRootComponent() {
-    ReactDOM.render((
-        <App/>
-    ),
-    document.getElementById('root'));
+export function initMattermost(element) {
+    preRenderSetup(() => {
+        ReactDOM.render(<App/>, element);
+    });
+}
+export function destroyMattermost(element) {
+    ReactDOM.unmountComponentAtNode(element);
 }
 
-/**
- * Adds a function to be invoked onload appended to any existing onload
- * event handlers.
- *
- * @param   {function} fn onload event handler
- *
- */
-function appendOnLoadEvent(fn) {
-    if (window.attachEvent) {
-        window.attachEvent('onload', fn);
-    } else if (window.onload) {
-        const curronload = window.onload;
-        window.onload = (evt) => {
-            curronload(evt);
-            fn(evt);
-        };
-    } else {
-        window.onload = fn;
-    }
-}
-
-appendOnLoadEvent(() => {
-    // Do the pre-render setup and call renderRootComponent when done
-    preRenderSetup(renderRootComponent);
-});
+window.initMattermost = initMattermost;
+window.destroyMattermost = destroyMattermost;

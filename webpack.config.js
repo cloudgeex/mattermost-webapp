@@ -122,11 +122,11 @@ var MYSTATS = {
     warningsFilter: '',
 };
 
-let publicPath = '/static/';
+let publicPath = '/mattermost/static/';
 
 // Allow overriding the publicPath in dev from the exported SiteURL.
 if (DEV) {
-    const siteURL = process.env.MM_SERVICESETTINGS_SITEURL || ''; //eslint-disable-line no-process-env
+    const siteURL = 'http://localhost:8065/mattermost'; //eslint-disable-line no-process-env
     if (siteURL) {
         publicPath = path.join(new url.URL(siteURL).pathname, 'static') + '/';
     }

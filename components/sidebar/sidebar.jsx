@@ -251,7 +251,8 @@ export default class Sidebar extends React.PureComponent {
 
         // update the favicon to show if there are any notifications
         if (this.lastBadgesActive !== this.badgesActive) {
-            this.updateFavicon(this.badgesActive);
+            // Favicon not used in form embedded version of myschooworks
+            // this.updateFavicon(this.badgesActive);
         }
     }
 

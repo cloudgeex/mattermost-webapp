@@ -8,9 +8,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import FastClick from 'fastclick';
 import {Route, Switch, Redirect} from 'react-router-dom';
-import {setUrl} from 'mattermost-redux/actions/general';
 import {setSystemEmojis} from 'mattermost-redux/actions/emojis';
 import {getConfig} from 'mattermost-redux/selectors/entities/general';
+import {Client4} from 'mattermost-redux/client';
 
 import * as UserAgent from 'utils/user_agent.jsx';
 import {EmojiIndicesByAlias} from 'utils/emoji.jsx';
@@ -98,8 +98,11 @@ export default class Root extends React.Component {
         this.currentCategoryFocus = 0;
         this.currentSidebarFocus = 0;
 
+        const token = localStorage.getItem('token');
+
         // Redux
-        setUrl(getSiteURL());
+        Client4.setUrl(getSiteURL());
+        Client4.setToken(token);
 
         setSystemEmojis(EmojiIndicesByAlias);
 
