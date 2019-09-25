@@ -139,6 +139,9 @@ var config = {
         publicPath,
         filename: '[name].[hash].js',
         chunkFilename: '[name].[contenthash].js',
+
+        // https://medium.com/@cliffers/how-to-run-multiple-webpack-instances-on-the-same-page-and-avoid-any-conflicts-4e2fe0f016d1
+        jsonpFunction: 'webpackReactJsonp'
     },
     module: {
         rules: [
@@ -441,3 +444,4 @@ if (process.env.PRODUCTION_PERF_DEBUG) { //eslint-disable-line no-process-env
 }
 
 module.exports = config;
+

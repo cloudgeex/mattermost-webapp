@@ -15,7 +15,9 @@ import 'katex/dist/katex.min.css';
 
 import {isDevMode, setCSRFFromCookie} from 'utils/utils';
 import store from 'stores/redux_store.jsx';
-import App from 'components/app';
+
+// using react app component without hot reload
+import {App} from 'components/app';
 
 PDFJS.disableWorker = true;
 
@@ -43,6 +45,8 @@ function preRenderSetup(callwhendone) {
     callwhendone();
 }
 
+export const reactApp = App;
+export const reactAppNode = <App/>;
 export function initMattermost(element) {
     preRenderSetup(() => {
         ReactDOM.render(<App/>, element);
@@ -52,5 +56,7 @@ export function destroyMattermost(element) {
     ReactDOM.unmountComponentAtNode(element);
 }
 
+window.reactApp = App;
+window.reactAppNode = App;
 window.initMattermost = initMattermost;
 window.destroyMattermost = destroyMattermost;

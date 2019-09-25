@@ -14,7 +14,7 @@ import loadRoot from 'bundle-loader?lazy!components/root';
 
 const Root = makeAsyncComponent(loadRoot);
 
-class App extends React.Component {
+export class App extends React.Component {
     render() {
         return (
             <Provider store={store}>
